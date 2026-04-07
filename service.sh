@@ -57,7 +57,7 @@ echo "✅ 服务已启动在 http://localhost:8088"
 curl -X POST http://localhost:8088/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-1 hidden lines
+    "model": "qwen2.5-7B",
     "messages": [{"role": "user", "content": "你好"}],
     "max_tokens": 100
   }'

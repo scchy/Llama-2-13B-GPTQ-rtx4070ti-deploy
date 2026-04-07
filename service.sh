@@ -2,7 +2,7 @@
 set -e
 export CUDA_HOME=/usr/local/cuda
 
-# /home/scc/anaconda3/envs/LLM/bin/python -m vllm.entrypoints.openai.api_server \
+# /home/scc/anaconda3/envs/vllm/bin/python -m vllm.entrypoints.openai.api_server \
 #     --model /home/scc/sccWork/devData/sccDisk/model_weight/Qwen/Qwen2.5-14B-Instruct-GPTQ-Int4 \
 #     --served-model-name qwen2.5-14B \
 #     --quantization gptq_marlin \
@@ -15,14 +15,14 @@ export CUDA_HOME=/usr/local/cuda
 #     --port 8088
 
 # pkill -9 -f "VLLM|vllm|api_server"
-# 启动 Qwen2.5-7B 模型
-echo "🚀 启动 Qwen2.5-7B (24K 上下文)..."
-/home/scc/anaconda3/envs/LLM/bin/python -m vllm.entrypoints.openai.api_server \
+# 启动 Qwen2.5-7B 模型 24576
+echo "🚀 启动 Qwen2.5-7B (16K 上下文)..."
+/home/scc/anaconda3/envs/vllm/bin/python -m vllm.entrypoints.openai.api_server \
     --model /home/scc/sccWork/devData/sccDisk/model_weight/Qwen/Qwen2.5-7B-Instruct-GPTQ-Int4 \
     --served-model-name qwen2.5-7B \
     --quantization gptq \
     --dtype float16 \
-    --max-model-len 24576 \
+    --max-model-len 16384 \
     --gpu-memory-utilization 0.88 \
     --max-num-seqs 1 \
     --trust-remote-code \
@@ -32,7 +32,7 @@ echo "🚀 启动 Qwen2.5-7B (24K 上下文)..."
     --port 8088
 
 # pythonic
-# /home/scc/anaconda3/envs/LLM/bin/python -m vllm.entrypoints.openai.api_server \
+# /home/scc/anaconda3/envs/vllm/bin/python -m vllm.entrypoints.openai.api_server \
 #     --model  /home/scc/sccWork/devData/sccDisk/model_weight/Qwen/Qwen2.5-Coder-7B-Instruct-AWQ \
 #     --served-model-name qwen2.5-7B \
 #     --quantization awq \
@@ -51,7 +51,7 @@ echo "🚀 启动 Qwen2.5-7B (24K 上下文)..."
 echo "✅ 服务已启动在 http://localhost:8088"
 
 # 3. 启动 OpenClaw（加载新配置）
-openclaw gateway stop && openclaw gateway start
+# openclaw gateway stop && openclaw gateway start
 
 # 测试服务
 curl -X POST http://localhost:8088/v1/chat/completions \

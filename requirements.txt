@@ -1,7 +1,7 @@
 # 针对 12GB 显存环境优化的 LLM 部署依赖
 
 # 核心推理框架 - vLLM 提供高性能推理和 OpenAI 兼容 API
-vllm==0.18.0
+vllm==0.18.4
 
 # 模型下载
 modelscope>=1.15.0
@@ -11,9 +11,6 @@ huggingface-hub>=0.23.0
 openai>=1.30.0
 
 # 常用工具
-numpy<2.0.0
-torch>=2.3.0
-accelerate>=0.27.0
-
-# 可选：AWQ 量化支持 (如果使用 AWQ 模型)
-# autoawq>=0.2.0
+torch==2.6.0 
+torchvision==0.21.0 
+torchaudio==2.6.0
